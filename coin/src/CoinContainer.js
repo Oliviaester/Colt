@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Coin from './Coin';
 import { choice } from './helpers';
+import Coin from './Coin';
 
 class CoinContainer extends Component {
   static defaultProps = {
-    coins: [
+    coin: [
       { side: 'heads', imgSrc: 'https://tinyurl.com/react-coin-heads-jpg' },
       { side: 'tails', imgSrc: 'https://tinyurl.com/react-coin-tails-jpg' }
     ]
@@ -19,9 +19,8 @@ class CoinContainer extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
-  flipCoin() {
-    const newCoin = choice(this.props.coins);
+  handleClick() {
+    let newCoin = choice(this.props.coin);
     this.setState(st => {
       return {
         currCoin: newCoin,
@@ -32,23 +31,18 @@ class CoinContainer extends Component {
     });
   }
 
-  handleClick(e) {
-    this.flipCoin();
-  }
-
   render() {
     return (
       <div className='CoinContainer'>
-        <h1>Lets flip a coin</h1>
-
         {this.state.currCoin && <Coin info={this.state.currCoin} />}
-        <button onClick={this.handleClick}>Flip me!</button>
+        <button onClick={this.handleClick}>Flip the coin</button>
         <p>
-          Out of {this.state.nFlips} flips, there have been {this.state.nHeads}{' '}
-          Heads, and {this.state.nTails} Tails
+          There has been {this.state.nFlips} flips, {this.state.nHeads} heads,
+          and {this.state.nTails} tails{' '}
         </p>
       </div>
     );
   }
 }
+
 export default CoinContainer;
