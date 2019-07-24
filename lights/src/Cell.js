@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Cell.css';
 
 class Cell extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class Cell extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(evt) {
-    this.props.flipeCellAround();
+    this.props.flipCellsAroundMe();
   }
   render() {
     let classes = 'Cell' + (this.props.isList ? 'Cell-lit' : '');

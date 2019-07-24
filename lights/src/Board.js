@@ -30,7 +30,7 @@ class Board extends Component {
     return board;
   }
 
-  flipeCellAround(coord) {
+  flipCellsAround(coord) {
     let { ncols, nrows } = this.props;
     let board = this.state.board;
     let [y, x] = coord.split('-').map(Number);
@@ -49,9 +49,16 @@ class Board extends Component {
     for (let y = 0; y < this.props.nrows; y++) {
       let row = [];
       for (let x = 0; x < this.props.ncols; x++) {
-        row.push(<Cell isLit={this.state.board[y][x]} />);
+        let coord = `${y}-${x}`;
+        row.push(
+          <Cell
+            key={coord}
+            isLit={this.state.board[y][x]}
+            flipCellsAroundMe={() => this.flipCellsAround(coord)}
+          />
+        );
       }
-      tblBoard.push(<tr>{row}</tr>);
+      tblBoard.push(<tr key={y}>{row}</tr>);
     }
     return (
       <table className='Board'>
