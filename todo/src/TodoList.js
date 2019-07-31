@@ -4,16 +4,23 @@ import NewTodoForm from './NewTodoForm';
 
 class TodoList extends Component {
   state = {
-    todos: [{ task: 'one' }, { task: 'two' }]
+    todos: []
   };
+
+  create = newTodo => {
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    });
+  };
+
   render() {
     const todos = this.state.todos.map(todo => {
-      return <Todo task={todo.task} />;
+      return <Todo key={todo.id} task={todo.task} />;
     });
     return (
       <div>
         <h1>Todo List</h1>
-        <NewTodoForm />
+        <NewTodoForm createTodo={this.create} />
         <ul>{todos}</ul>
       </div>
     );
