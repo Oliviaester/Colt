@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import uuid from 'uuid/v4';
 
 class NewTodoForm extends Component {
-  state = { task: '' };
+  state = {
+    task: ''
+  };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.create({ ...this.state, id: uuid() });
-    this.setState({ task: '' });
-  };
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <label htmlFor='task'>New Todo</label>
         <input
           type='text'
@@ -26,10 +23,8 @@ class NewTodoForm extends Component {
           value={this.state.task}
           onChange={this.handleChange}
         />
-        <button>Add Todo</button>
       </form>
     );
   }
 }
-
 export default NewTodoForm;
