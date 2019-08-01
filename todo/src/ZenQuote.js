@@ -19,9 +19,13 @@ class ZenQuote extends Component {
             isLoaded: true
           });
         }.bind(this),
-        1000
+        2000
       );
     });
+  }
+
+  componentDidUpdate() {
+    console.log('in component did update');
   }
 
   render() {
