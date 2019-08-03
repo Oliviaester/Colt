@@ -7,6 +7,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+.active-link {
+  color: pink;
+  border-bottom: 1px solid white;
+}
 
 .App-header {
   background-color: #282c34;
